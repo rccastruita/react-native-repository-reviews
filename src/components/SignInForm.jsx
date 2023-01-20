@@ -12,6 +12,7 @@ const styles = StyleSheet.create({
   button: {
     backgroundColor: theme.colors.primary,
     marginHorizontal: theme.margins.formHorizontal,
+    marginTop: 5,
     padding: 10,
   },
   buttonText: {

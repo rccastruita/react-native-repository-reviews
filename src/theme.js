@@ -7,11 +7,13 @@ const theme = {
         //appBarPrimary: '#2eeacc',
         appBarSecondary: '#eee',
         mainBackground: '#e1e4e8',
+        error: "#d73a4a",
     },
     fontSizes: {
         body: 14,
         subheading: 16,
         heading: 18,
+        fieldError: 14
     },
     fonts: {
         main: 'System',
@@ -23,6 +25,7 @@ const theme = {
     margins: {
         formHorizontal: 20,
         formTop: 30,
+        formFieldBottom: 25,
     }
 };
 

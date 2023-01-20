@@ -8,7 +8,11 @@ import theme from '../theme';
 
 const styles = StyleSheet.create({
   errorText: {
-    marginTop: 5,
+    marginTop: -theme.margins.formFieldBottom,
+    marginBottom: theme.margins.formFieldBottom - theme.fontSizes.fieldError,
+    marginLeft: theme.margins.formHorizontal,
+    color: theme.colors.error,
+    fontSize: theme.fontSizes.fieldError,
   },
   label: {
     marginLeft: theme.margins.formHorizontal,
@@ -18,8 +22,13 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     padding: 6,
     marginHorizontal: theme.margins.formHorizontal,
-    marginBottom: 15,
-    
+    marginBottom: theme.margins.formFieldBottom,
+  },
+  fieldError: {
+    borderColor: theme.colors.error,
+    borderWidth: 1,
+    marginBottom: theme.margins.formFieldBottom - 1,
+    marginTop: -1,
   }
 });
 
@@ -36,7 +45,7 @@ const FormikTextInput = ({ name, label, ...props }) => {
         </Text>
       }
       <TextInput
-        style={styles.field}
+        style={[styles.field, showError && styles.fieldError]}
         onChangeText={value => helpers.setValue(value)}
         onBlur={() => helpers.setTouched(true)}
         value={field.value}
