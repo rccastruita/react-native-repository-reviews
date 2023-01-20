@@ -20,6 +20,10 @@ const theme = {
         normal: '400',
         bold: '700',
     },
+    margins: {
+        formHorizontal: 20,
+        formTop: 30,
+    }
 };
 
 export default theme;
