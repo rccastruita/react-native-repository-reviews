@@ -23,6 +23,7 @@ const styles = StyleSheet.create({
     padding: 6,
     marginHorizontal: theme.margins.formHorizontal,
     marginBottom: theme.margins.formFieldBottom,
+    fontFamily: theme.fonts.main,
   },
   fieldError: {
     borderColor: theme.colors.error,
