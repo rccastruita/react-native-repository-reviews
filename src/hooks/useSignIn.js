@@ -12,6 +12,7 @@ const useSignIn = () => {
         password
       },
       onError: (error) => {
+        console.log('error hook');
         console.log(error);
       },
     })

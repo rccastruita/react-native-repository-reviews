@@ -3,6 +3,7 @@ import * as yup from 'yup';
 
 import SignInForm from './SignInForm';
 import useSignIn from '../hooks/useSignIn';
+import AuthStorage from '../utils/authStorage';
 
 const initialValues = {
   username: '',
@@ -23,9 +24,15 @@ const SignIn = () => {
     const { username, password } = values;
     try {
       await signIn({ username, password});
-      console.log(`data: ${JSON.stringify(result.data.authenticate)}`);
+      
+      const authStorage = new AuthStorage();
+      await authStorage.setAccessToken(result.data.authenticate.accessToken);
+
+      const token = await authStorage.getAccessToken();
+      console.log(`signed in: ${JSON.stringify(token)}`);
+      
     } catch(e) {
-      console.log('errorsin signin');
+      console.log('error signin');
       console.log(e);
     }
   };
