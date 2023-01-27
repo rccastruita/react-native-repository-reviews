@@ -10,14 +10,11 @@ class AuthStorage {
       `${this.namespace}:accessToken`,
     );
 
-    console.log(`raw token: ${JSON.stringify(rawToken)}`);
-
-    return rawToken ? rawToken : '';
+    const result = rawToken ? rawToken: '';
+    return result;
   }
 
   async setAccessToken(accessToken) {
-    console.log(`new token: ${accessToken}`);
-
     await AsyncStorage.setItem(
       `${this.namespace}:accessToken`,
       accessToken,
