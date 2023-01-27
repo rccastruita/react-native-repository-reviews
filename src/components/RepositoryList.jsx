@@ -1,8 +1,7 @@
 import { FlatList, View, StyleSheet } from 'react-native';
-import { useEffect, useState } from 'react';
 
 import useRepositories from '../hooks/useRepositories';
-import useAuthStorage from '../hooks/useAuthStorage';
+import useMe from '../hooks/useMe';
 
 import RepositoryItem from './RepositoryItem';
 import Text from './Text';
@@ -16,18 +15,9 @@ const styles = StyleSheet.create({
 const ItemSeparator = () => <View style={styles.separator} />;
 
 const RepositoryList = () => {
+  const { me } = useMe();
+
   const { repositories } = useRepositories();
-  const [token, setToken] = useState('nulo');
-  const authStorage = useAuthStorage();
-
-  const fetchToken = async () => {
-    const x = await authStorage.getAccessToken();
-    setToken(x);
-  }
-
-  useEffect(() => {
-    fetchToken();
-  }, []);
 
   const repositoryNodes = repositories
     ? repositories.edges.map(edge => edge.node)
@@ -40,7 +30,10 @@ const RepositoryList = () => {
         ItemSeparatorComponent={ItemSeparator}
         renderItem={({item}) => <RepositoryItem item={item} /> }
       />
-      <Text>Token: {token}</Text>
+      <Text>{
+        me ? `User: ${me.username}` : 'Not signed in'
+      }
+      </Text>
     </>
   );
 };
