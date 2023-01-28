@@ -14,11 +14,7 @@ const styles = StyleSheet.create({
 
 const ItemSeparator = () => <View style={styles.separator} />;
 
-const RepositoryList = () => {
-  const { me } = useMe();
-
-  const { repositories } = useRepositories();
-
+const RepositoryListContainer = ({ repositories, me }) => {
   const repositoryNodes = repositories
     ? repositories.edges.map(edge => edge.node)
     : [];
@@ -28,13 +24,21 @@ const RepositoryList = () => {
       <FlatList
         data={repositoryNodes}
         ItemSeparatorComponent={ItemSeparator}
-        renderItem={({item}) => <RepositoryItem item={item} /> }
+        renderItem={( {item} ) => <RepositoryItem item={item} />}
       />
-      <Text>{
-        me ? `User: ${me.username}` : 'Not signed in'
-      }
+      <Text>
+        { me ? `User: ${me.username}` : 'Not signed in' }
       </Text>
     </>
+  )
+};
+
+const RepositoryList = () => {
+  const { me } = useMe();
+  const { repositories } = useRepositories();
+
+  return (
+    <RepositoryListContainer repositories={repositories} me={me} />
   );
 };
 
